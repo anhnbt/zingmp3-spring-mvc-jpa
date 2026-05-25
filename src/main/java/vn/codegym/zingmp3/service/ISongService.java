@@ -5,7 +5,7 @@ import vn.codegym.zingmp3.model.Song;
 import java.util.List;
 
 public interface ISongService {
-    List<Song> findAll();
+    Iterable<Song> findAll();
 
     List<Song> search(String name, String artist, String genre);
 
@@ -14,4 +14,6 @@ public interface ISongService {
     Song findById(Long id);
 
     void remove(Long id);
+
+    void remove();
 }

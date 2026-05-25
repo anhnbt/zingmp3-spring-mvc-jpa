@@ -35,6 +35,8 @@ dependencies {
 
     implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.30'
+
+    implementation("org.springframework.data:spring-data-jpa:3.4.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

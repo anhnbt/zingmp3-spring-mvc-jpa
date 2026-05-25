@@ -23,7 +23,7 @@ public class SongController {
 
     @GetMapping
     public String listSongs(Model model) {
-        List<Song> songs = songService.findAll();
+        Iterable<Song> songs = songService.findAll();
         model.addAttribute("songs", songs);
         return "song/list";
     }
