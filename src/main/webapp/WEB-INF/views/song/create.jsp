@@ -29,6 +29,11 @@
     </div>
 
     <div class="mb-3">
+        <form:label path="createdAt" class="form-label">Ngay dang:</form:label>
+        <form:input type="date" path="createdAt" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
         <form:label path="mp3File" class="form-label">Avatar:</form:label>
         <form:input path="mp3File" type="file"></form:input>
     </div>

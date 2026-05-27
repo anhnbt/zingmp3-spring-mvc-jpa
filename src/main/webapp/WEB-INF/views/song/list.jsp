@@ -15,11 +15,11 @@
 <body>
 <h1>Danh sach bai hat</h1>
 <a href="/songs/create">Them bai hat</a>
-<c:if test="${empty songs}">
+<c:if test="${empty songPage.content}">
     <p>Khong co bai hat nao</p>
 </c:if>
-<c:forEach items="${songs}" var="song">
-    <p>Ten bai hat: ${song.name} - <a href="/songs/${song.id}">Xem</a> -  <a href="/songs/${song.id}/edit">Chinh sua</a> -  <a href="/songs/${song.id}/delete">Xoa</a></p>
+<c:forEach items="${songPage.content}" var="song">
+    <p>${song.id}: Ten bai hat: ${song.name} - <a href="/songs/${song.id}">Xem</a> -  <a href="/songs/${song.id}/edit">Chinh sua</a> -  <a href="/songs/${song.id}/delete">Xoa</a></p>
 </c:forEach>
 </body>
 </html>

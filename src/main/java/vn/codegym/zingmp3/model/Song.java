@@ -3,6 +3,8 @@ package vn.codegym.zingmp3.model;
 import jakarta.persistence.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 @NamedQuery(
         name = "findAllSongsWithNameArtistGenre",
         query = "SELECT c FROM Song c WHERE c.name LIKE :name AND c.artist LIKE :artist AND c.genre LIKE :genre"
@@ -18,6 +20,9 @@ public class Song {
     private String artist;
     private String genre;
     private String url;
+    private Date createdAt;
+    private Date updatedAt;
+
     @Transient
     private MultipartFile mp3File;
 
@@ -86,5 +91,31 @@ public class Song {
 
     public void setMp3File(MultipartFile mp3File) {
         this.mp3File = mp3File;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }

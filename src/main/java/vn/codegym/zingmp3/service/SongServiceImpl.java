@@ -1,5 +1,7 @@
 package vn.codegym.zingmp3.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.zingmp3.model.Song;
 import vn.codegym.zingmp3.repository.SongRepository;
@@ -18,6 +20,11 @@ public class SongServiceImpl implements ISongService {
     @Override
     public Iterable<Song> findAll() {
         return songRepository.findAll();
+    }
+
+    @Override
+    public Page<Song> findAll(Pageable pageable) {
+        return songRepository.findAll(pageable);
     }
 
     @Override

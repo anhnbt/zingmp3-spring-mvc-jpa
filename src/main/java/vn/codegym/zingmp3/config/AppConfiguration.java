@@ -11,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -25,6 +27,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import vn.codegym.zingmp3.formatter.DateFormatter;
+import vn.codegym.zingmp3.formatter.StringToLocalDateConverter;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -35,6 +39,7 @@ import java.util.Properties;
 @PropertySource("classpath:upload_file.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories("vn.codegym.zingmp3.repository")
+@EnableSpringDataWebSupport
 public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -65,8 +70,8 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/mp3/**")
-                .addResourceLocations("file:" + upload);
+        registry.addResourceHandler("/thumbnail/**").addResourceLocations("file:" + upload + "thumbnail/");
+        registry.addResourceHandler("/mp3/**").addResourceLocations("file:" + upload + "mp3/");
     }
 
     //JPA
@@ -114,4 +119,9 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
         return properties;
     }
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new DateFormatter("yyyy-MM-dd"));
+        registry.addConverter(new StringToLocalDateConverter("yyyy-MM-dd"));
+    }
 }
