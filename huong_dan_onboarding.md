@@ -14,31 +14,36 @@ Mục tiêu của hướng dẫn này là giúp bạn:
 Dưới đây là sơ đồ tóm tắt các thành phần chính trong dự án. Bạn có thể sử dụng sơ đồ này để hệ thống hóa kiến thức cần nhớ:
 
 ```mermaid
-mindmap
-  root("Spring MVC + JPA")
-    "Cấu Hình (Config)"
-      "AppInitializer<br>(Đăng ký Servlet)"
-      "AppConfiguration<br>(Cấu hình Bean, JPA, View)"
-    "Mô Hình (Model)"
-      "Entity (@Entity, @Table)"
-      "Primary Key (@Id, @GeneratedValue)"
-      "Data Fields"
-    "Kho Dữ Liệu (Repository)"
-      "Spring Data JPA"
-      "JpaRepository<Entity, ID>"
-      "Tự động sinh câu lệnh CRUD"
-    "Nghiệp Vụ (Service)"
-      "Interface (Định nghĩa hành vi)"
-      "Implementation (Triển khai logic)"
-      "Constructor Injection (Tiêm phụ thuộc)"
-    "Điều Hướng (Controller)"
-      "Routing (@RequestMapping, @GetMapping, @PostMapping)"
-      "Nhận dữ liệu (@ModelAttribute, @PathVariable, Model)"
-      "Trả về View name"
-    "Giao Diện (View)"
-      "HTML thuần"
-      "Spring Form Taglib (<form:form>, path)"
-      "JSTL Core Taglib (<c:forEach>, <c:if>)"
+graph TD
+  root["Spring MVC + JPA"] --> Config["Cấu Hình (Config)"]
+  root --> Model["Mô Hình (Model)"]
+  root --> Repo["Kho Dữ Liệu (Repository)"]
+  root --> Service["Nghiệp Vụ (Service)"]
+  root --> Controller["Điều Hướng (Controller)"]
+  root --> View["Giao Diện (View)"]
+
+  Config --> AppInitializer["AppInitializer (Đăng ký Servlet)"]
+  Config --> AppConfiguration["AppConfiguration (Cấu hình Bean, JPA, View)"]
+
+  Model --> Entity["Entity (@Entity, @Table)"]
+  Model --> PK["Primary Key (@Id, @GeneratedValue)"]
+  Model --> Fields["Data Fields"]
+
+  Repo --> SpringDataJPA["Spring Data JPA"]
+  Repo --> JpaRepo["JpaRepository<Entity, ID>"]
+  Repo --> AutoCRUD["Tự động sinh câu lệnh CRUD"]
+
+  Service --> Interface["Interface (Định nghĩa hành vi)"]
+  Service --> Impl["Implementation (Triển khai logic)"]
+  Service --> DI["Constructor Injection (Tiêm phụ thuộc)"]
+
+  Controller --> Routing["Routing (@RequestMapping, @GetMapping, @PostMapping)"]
+  Controller --> Binding["Nhận dữ liệu (@ModelAttribute, @PathVariable, Model)"]
+  Controller --> ViewName["Trả về View name"]
+
+  View --> HTML["HTML thuần"]
+  View --> FormTag["Spring Form Taglib (<form:form>, path)"]
+  View --> JSTL["JSTL Core Taglib (<c:forEach>, <c:if>)"]
 ```
 
 ---
